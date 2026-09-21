@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card p-4 shadow-lg text-center">
+
+            <h3 class="mb-4">👤 Профіль</h3>
+
+            <p class="fs-5"><strong>Логін:</strong> {{ user.username }}</p>
+            <p class="fs-5"><strong>Email:</strong> {{ user.email }}</p>
+            <p class="fs-6 text-secondary">
+                З нами з: {{ user.created_at.strftime("%d.%m.%Y") }}
+            </p>
+
+            <!-- Нова кнопка на головну -->
+            <a href="/" class="btn btn-gradient btn-lg mt-3">
+                🏠 На головну
+            </a>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

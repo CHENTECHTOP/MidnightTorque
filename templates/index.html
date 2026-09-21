@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="text-center">
+
+    <h1 class="fw-bold mb-4">🎮 Midnight Torque 🎮</h1>
+
+    <!-- Карусель скріншотів -->
+    <div class="carousel-container mb-4">
+        <div class="carousel-track">
+            <img src="{{ url_for('static', filename='images/1.png') }}" alt="Скрін 1">
+            <img src="{{ url_for('static', filename='images/2.png') }}" alt="Скрін 2">
+            <img src="{{ url_for('static', filename='images/3.png') }}" alt="Скрін 3">
+            <img src="{{ url_for('static', filename='images/4.png') }}" alt="Скрін 4">
+            <!-- дублюємо для плавного циклу -->
+            <img src="{{ url_for('static', filename='images/1.png') }}" alt="Скрін 1">
+            <img src="{{ url_for('static', filename='images/2.png') }}" alt="Скрін 2">
+            <img src="{{ url_for('static', filename='images/3.png') }}" alt="Скрін 3">
+            <img src="{{ url_for('static', filename='images/4.png') }}" alt="Скрін 4">
+        </div>
+    </div>
+
+    <p class="lead mx-auto" style="max-width: 800px;">
+        Це гра про перевезення пасажирів і доставку товарів, де ти керуєш автомобілем і сам досліджуєш карту.
+        <br><br>
+        Тобі потрібно знаходити людей або їхні товари, після чого пасажир дає точку куди його привезти. Але ви не знаєте де вони — їх також потрібно знайти самостійно, орієнтуючись по карті.
+        <br><br>
+        Твоя задача — підібрати пасажира або вантаж і доставити його в потрібне місце, заробляючи гроші за кожне виконане замовлення.
+        <br><br>
+        Заробляй гроші, відкривай нові карти, купуй автомобілі та покращуй свій транспорт.
+    </p>
+
+    {% if current_user.is_authenticated %}
+        <a href="/download" class="btn btn-gradient btn-lg mt-4">
+            ⬇ Скачати гру
+        </a>
+    {% else %}
+        <a href="/login" class="btn btn-primary btn-lg mt-4">
+            Увійти щоб скачати
+        </a>
+    {% endif %}
+
+</div>
+
+<style>
+/* Карусель */
+.carousel-container {
+    overflow: hidden;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.carousel-track {
+    display: flex;
+    animation: scroll 40s linear infinite;
+}
+
+.carousel-track img {
+    width: 500px; /* збільшили приблизно 2.5 рази */
+    height: auto;
+    margin-right: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-2120px); } /* 4 фото*500 + 4*20 відступи */
+}
+</style>
+
+{% endblock %}
